@@ -1,0 +1,27 @@
+#include "interlab.h"
+#include "ui_interlab.h"
+#include <QtSerialPort/QtSerialPort>
+
+InterLab::InterLab(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::InterLab)
+{
+    ui->setupUi(this);
+}
+
+InterLab::~InterLab()
+{
+    delete ui;
+}
+
+void InterLab::on_actionBeenden_triggered()
+{
+    close();
+}
+
+void InterLab::on_actionVersion_triggered()
+{
+    QMessageBox Version;
+    Version.setText("Interlab Version 0.1");
+    Version.exec();
+}
