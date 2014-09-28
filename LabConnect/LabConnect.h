@@ -5,6 +5,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QMessageBox>
+#include <string>
+
 
 namespace Ui {
 class LabConnect;
@@ -22,6 +24,8 @@ private slots:
     void on_actionBeenden_triggered();
 
     void on_actionVersion_triggered();
+
+    void on_actionEinstellungen_triggered();
 
 private:
     Ui::LabConnect *ui;

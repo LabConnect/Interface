@@ -28,8 +28,9 @@
      <string>LabConnect</string>
     </property>
     <addaction name="actionGer_te_neu_laden"/>
-    <addaction name="actionAlle_Verbindungen_trennen"/>
+    <addaction name="actionEinstellungen"/>
     <addaction name="separator"/>
+    <addaction name="actionAlle_Verbindungen_trennen"/>
     <addaction name="actionBeenden"/>
    </widget>
    <widget class="QMenu" name="menu_ber">
@@ -80,6 +81,11 @@
   <action name="actionHilfe">
    <property name="text">
     <string>Hilfe</string>
+   </property>
+  </action>
+  <action name="actionEinstellungen">
+   <property name="text">
+    <string>Einstellungen</string>
    </property>
   </action>
  </widget>
