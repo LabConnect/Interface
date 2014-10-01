@@ -2,10 +2,11 @@
 #define LabConnect_H
 
 #include <QMainWindow>
-#include <QtSerialPort/QSerialPort>
-#include <QtSerialPort/QSerialPortInfo>
+// #include <QtSerialPort/QSerialPort>
+// #include <QtSerialPort/QSerialPortInfo>
 #include <QMessageBox>
 #include <string>
+
 
 
 namespace Ui {
@@ -19,6 +20,7 @@ class LabConnect : public QMainWindow
 public:
     explicit LabConnect(QWidget *parent = 0);
     ~LabConnect();
+    QString BaudRate;
 
 private slots:
     void on_actionBeenden_triggered();
@@ -26,6 +28,12 @@ private slots:
     void on_actionVersion_triggered();
 
     void on_actionEinstellungen_triggered();
+
+    void on_actionEinstellungen_2_triggered();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::LabConnect *ui;

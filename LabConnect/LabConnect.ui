@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>LabConnect</class>
  <widget class="QMainWindow" name="LabConnect">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +16,34 @@
   <property name="windowTitle">
    <string>LabConnect</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>170</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Baud Rate</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>120</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>set 19200</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -28,7 +58,7 @@
      <string>LabConnect</string>
     </property>
     <addaction name="actionGer_te_neu_laden"/>
-    <addaction name="actionEinstellungen"/>
+    <addaction name="actionEinstellungen_2"/>
     <addaction name="separator"/>
     <addaction name="actionAlle_Verbindungen_trennen"/>
     <addaction name="actionBeenden"/>
@@ -84,6 +114,11 @@
    </property>
   </action>
   <action name="actionEinstellungen">
+   <property name="text">
+    <string>Einstellungen</string>
+   </property>
+  </action>
+  <action name="actionEinstellungen_2">
    <property name="text">
     <string>Einstellungen</string>
    </property>

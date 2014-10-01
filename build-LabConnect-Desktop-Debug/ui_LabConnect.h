@@ -17,6 +17,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -31,7 +32,11 @@ public:
     QAction *actionVersion;
     QAction *actionCredits;
     QAction *actionHilfe;
+    QAction *actionEinstellungen;
+    QAction *actionEinstellungen_2;
     QWidget *centralWidget;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QMenu *menuLabConnect;
     QMenu *menu_ber;
@@ -41,6 +46,7 @@ public:
     {
         if (LabConnect->objectName().isEmpty())
             LabConnect->setObjectName(QStringLiteral("LabConnect"));
+        LabConnect->setEnabled(true);
         LabConnect->resize(573, 403);
         actionGer_te_neu_laden = new QAction(LabConnect);
         actionGer_te_neu_laden->setObjectName(QStringLiteral("actionGer_te_neu_laden"));
@@ -54,8 +60,18 @@ public:
         actionCredits->setObjectName(QStringLiteral("actionCredits"));
         actionHilfe = new QAction(LabConnect);
         actionHilfe->setObjectName(QStringLiteral("actionHilfe"));
+        actionEinstellungen = new QAction(LabConnect);
+        actionEinstellungen->setObjectName(QStringLiteral("actionEinstellungen"));
+        actionEinstellungen_2 = new QAction(LabConnect);
+        actionEinstellungen_2->setObjectName(QStringLiteral("actionEinstellungen_2"));
         centralWidget = new QWidget(LabConnect);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(90, 170, 99, 27));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(210, 120, 99, 27));
         LabConnect->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(LabConnect);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -72,8 +88,9 @@ public:
         menuBar->addAction(menuLabConnect->menuAction());
         menuBar->addAction(menu_ber->menuAction());
         menuLabConnect->addAction(actionGer_te_neu_laden);
-        menuLabConnect->addAction(actionAlle_Verbindungen_trennen);
+        menuLabConnect->addAction(actionEinstellungen_2);
         menuLabConnect->addSeparator();
+        menuLabConnect->addAction(actionAlle_Verbindungen_trennen);
         menuLabConnect->addAction(actionBeenden);
         menu_ber->addAction(actionCredits);
         menu_ber->addAction(actionVersion);
@@ -94,6 +111,10 @@ public:
         actionVersion->setText(QApplication::translate("LabConnect", "Version", 0));
         actionCredits->setText(QApplication::translate("LabConnect", "Credits", 0));
         actionHilfe->setText(QApplication::translate("LabConnect", "Hilfe", 0));
+        actionEinstellungen->setText(QApplication::translate("LabConnect", "Einstellungen", 0));
+        actionEinstellungen_2->setText(QApplication::translate("LabConnect", "Einstellungen", 0));
+        pushButton->setText(QApplication::translate("LabConnect", "Baud Rate", 0));
+        pushButton_2->setText(QApplication::translate("LabConnect", "set 19200", 0));
         menuLabConnect->setTitle(QApplication::translate("LabConnect", "LabConnect", 0));
         menu_ber->setTitle(QApplication::translate("LabConnect", "Hilfe", 0));
     } // retranslateUi

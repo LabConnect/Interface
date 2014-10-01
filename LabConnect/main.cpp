@@ -1,7 +1,7 @@
 #include "LabConnect.h"
 #include <QApplication>
-#include <QtSerialPort/QSerialPort>
-#include <QtSerialPort/QSerialPortInfo>
+// #include <QtSerialPort/QSerialPort>
+// #include <QtSerialPort/QSerialPortInfo>
 
 
 

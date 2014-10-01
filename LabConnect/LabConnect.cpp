@@ -1,9 +1,12 @@
 #include "LabConnect.h"
 #include "ui_LabConnect.h"
-#include <QtSerialPort/QtSerialPort>
+// #include <QtSerialPort/QtSerialPort>
 #include "einstellungen.h"
+#include <QMessageBox>
 
 QString Version_Number = "0.1";
+
+
 
 LabConnect::LabConnect(QWidget *parent) :
     QMainWindow(parent),
@@ -29,9 +32,22 @@ void LabConnect::on_actionVersion_triggered()
     Version.exec();
 }
 
-void LabConnect::on_actionEinstellungen_triggered()
+void LabConnect::on_actionEinstellungen_2_triggered()
 {
     Einstellungen settings;
-    settings.setModal(true);
+    LabConnect me;
+    me.setEnabled(false);
     settings.exec();
+}
+
+void LabConnect::on_pushButton_clicked()
+{
+    QMessageBox BaudMessage;
+    BaudMessage.setText(BaudRate);
+    BaudMessage.exec();
+}
+
+void LabConnect::on_pushButton_2_clicked()
+{
+    BaudRate = "19200";
 }
