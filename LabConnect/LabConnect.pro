@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         LabConnect.cpp \
-    einstellungen.cpp
+    einstellungen.cpp \
+    globals.cpp
 
 HEADERS  += LabConnect.h \
-    einstellungen.h
+    einstellungen.h \
+    globals.h
 
 FORMS    += LabConnect.ui \
     einstellungen.ui

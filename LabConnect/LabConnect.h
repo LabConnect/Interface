@@ -7,10 +7,9 @@
 #include <QMessageBox>
 #include <string>
 
-
-
 namespace Ui {
 class LabConnect;
+
 }
 
 class LabConnect : public QMainWindow
@@ -20,23 +19,21 @@ class LabConnect : public QMainWindow
 public:
     explicit LabConnect(QWidget *parent = 0);
     ~LabConnect();
-    QString BaudRate;
 
 private slots:
     void on_actionBeenden_triggered();
 
     void on_actionVersion_triggered();
 
-    void on_actionEinstellungen_triggered();
-
     void on_actionEinstellungen_2_triggered();
 
-    void on_pushButton_clicked();
+    void on_dial_valueChanged(int value);
 
-    void on_pushButton_2_clicked();
+    void on_comboBox_activated(int index);
 
 private:
     Ui::LabConnect *ui;
 };
+
 
 #endif // LabConnect_H

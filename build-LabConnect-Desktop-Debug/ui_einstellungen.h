@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -27,7 +28,8 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QLabel *label;
-    QPushButton *pushButton_4;
+    QComboBox *comboBox;
+    QLabel *label_2;
 
     void setupUi(QDialog *Einstellungen)
     {
@@ -50,9 +52,17 @@ public:
         font.setPointSize(16);
         font.setUnderline(false);
         label->setFont(font);
-        pushButton_4 = new QPushButton(Einstellungen);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(80, 120, 99, 27));
+        comboBox = new QComboBox(Einstellungen);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(100, 60, 111, 27));
+        label_2 = new QLabel(Einstellungen);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(20, 60, 71, 31));
+        QFont font1;
+        font1.setPointSize(12);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_2->setFont(font1);
 
         retranslateUi(Einstellungen);
 
@@ -61,12 +71,24 @@ public:
 
     void retranslateUi(QDialog *Einstellungen)
     {
-        Einstellungen->setWindowTitle(QApplication::translate("Einstellungen", "Dialog", 0));
+        Einstellungen->setWindowTitle(QApplication::translate("Einstellungen", "Einstellungen", 0));
         pushButton->setText(QApplication::translate("Einstellungen", "OK", 0));
         pushButton_2->setText(QApplication::translate("Einstellungen", "Abbrechen", 0));
         pushButton_3->setText(QApplication::translate("Einstellungen", "Standardwerte \303\274bernehmen", 0));
         label->setText(QApplication::translate("Einstellungen", "Einstellungen", 0));
-        pushButton_4->setText(QApplication::translate("Einstellungen", "set 9600", 0));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("Einstellungen", "1200", 0)
+         << QApplication::translate("Einstellungen", "2400", 0)
+         << QApplication::translate("Einstellungen", "4800", 0)
+         << QApplication::translate("Einstellungen", "9600", 0)
+         << QApplication::translate("Einstellungen", "19200", 0)
+         << QApplication::translate("Einstellungen", "38400", 0)
+         << QApplication::translate("Einstellungen", "57600", 0)
+         << QApplication::translate("Einstellungen", "115200", 0)
+        );
+        comboBox->setCurrentText(QApplication::translate("Einstellungen", "1200", 0));
+        label_2->setText(QApplication::translate("Einstellungen", "Baudrate", 0));
     } // retranslateUi
 
 };

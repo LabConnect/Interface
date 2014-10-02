@@ -13,11 +13,14 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QDial>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -32,11 +35,13 @@ public:
     QAction *actionVersion;
     QAction *actionCredits;
     QAction *actionHilfe;
-    QAction *actionEinstellungen;
     QAction *actionEinstellungen_2;
     QWidget *centralWidget;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QDial *dial;
+    QLCDNumber *lcdNumber;
+    QLabel *label;
+    QLabel *label_3;
+    QComboBox *comboBox;
     QMenuBar *menuBar;
     QMenu *menuLabConnect;
     QMenu *menu_ber;
@@ -47,7 +52,8 @@ public:
         if (LabConnect->objectName().isEmpty())
             LabConnect->setObjectName(QStringLiteral("LabConnect"));
         LabConnect->setEnabled(true);
-        LabConnect->resize(573, 403);
+        LabConnect->resize(669, 408);
+        LabConnect->setAcceptDrops(false);
         actionGer_te_neu_laden = new QAction(LabConnect);
         actionGer_te_neu_laden->setObjectName(QStringLiteral("actionGer_te_neu_laden"));
         actionAlle_Verbindungen_trennen = new QAction(LabConnect);
@@ -60,22 +66,48 @@ public:
         actionCredits->setObjectName(QStringLiteral("actionCredits"));
         actionHilfe = new QAction(LabConnect);
         actionHilfe->setObjectName(QStringLiteral("actionHilfe"));
-        actionEinstellungen = new QAction(LabConnect);
-        actionEinstellungen->setObjectName(QStringLiteral("actionEinstellungen"));
         actionEinstellungen_2 = new QAction(LabConnect);
         actionEinstellungen_2->setObjectName(QStringLiteral("actionEinstellungen_2"));
         centralWidget = new QWidget(LabConnect);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(90, 170, 99, 27));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(210, 120, 99, 27));
+        dial = new QDial(centralWidget);
+        dial->setObjectName(QStringLiteral("dial"));
+        dial->setGeometry(QRect(510, 40, 151, 141));
+        dial->setCursor(QCursor(Qt::OpenHandCursor));
+        dial->setMouseTracking(false);
+        dial->setMaximum(100);
+        dial->setWrapping(true);
+        dial->setNotchesVisible(true);
+        lcdNumber = new QLCDNumber(centralWidget);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(10, 50, 481, 121));
+        lcdNumber->setFrameShape(QFrame::WinPanel);
+        lcdNumber->setFrameShadow(QFrame::Raised);
+        lcdNumber->setSmallDecimalPoint(false);
+        lcdNumber->setDigitCount(8);
+        lcdNumber->setMode(QLCDNumber::Dec);
+        lcdNumber->setSegmentStyle(QLCDNumber::Filled);
+        lcdNumber->setProperty("value", QVariant(100000));
+        lcdNumber->setProperty("intValue", QVariant(100000));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 10, 71, 17));
+        QFont font;
+        font.setPointSize(12);
+        font.setBold(true);
+        font.setWeight(75);
+        label->setFont(font);
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(520, 0, 41, 31));
+        label_3->setFont(font);
+        comboBox = new QComboBox(centralWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(560, 0, 91, 27));
         LabConnect->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(LabConnect);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 573, 25));
+        menuBar->setGeometry(QRect(0, 0, 669, 25));
         menuLabConnect = new QMenu(menuBar);
         menuLabConnect->setObjectName(QStringLiteral("menuLabConnect"));
         menu_ber = new QMenu(menuBar);
@@ -83,6 +115,7 @@ public:
         LabConnect->setMenuBar(menuBar);
         mainToolBar = new QToolBar(LabConnect);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setAcceptDrops(false);
         LabConnect->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
         menuBar->addAction(menuLabConnect->menuAction());
@@ -99,6 +132,9 @@ public:
 
         retranslateUi(LabConnect);
 
+        comboBox->setCurrentIndex(6);
+
+
         QMetaObject::connectSlotsByName(LabConnect);
     } // setupUi
 
@@ -111,10 +147,25 @@ public:
         actionVersion->setText(QApplication::translate("LabConnect", "Version", 0));
         actionCredits->setText(QApplication::translate("LabConnect", "Credits", 0));
         actionHilfe->setText(QApplication::translate("LabConnect", "Hilfe", 0));
-        actionEinstellungen->setText(QApplication::translate("LabConnect", "Einstellungen", 0));
         actionEinstellungen_2->setText(QApplication::translate("LabConnect", "Einstellungen", 0));
-        pushButton->setText(QApplication::translate("LabConnect", "Baud Rate", 0));
-        pushButton_2->setText(QApplication::translate("LabConnect", "set 19200", 0));
+        label->setText(QApplication::translate("LabConnect", "Frequenz", 0));
+        label_3->setText(QApplication::translate("LabConnect", "Step", 0));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("LabConnect", "1 Hz", 0)
+         << QApplication::translate("LabConnect", "5 Hz", 0)
+         << QApplication::translate("LabConnect", "10 Hz", 0)
+         << QApplication::translate("LabConnect", "50 Hz", 0)
+         << QApplication::translate("LabConnect", "100 Hz", 0)
+         << QApplication::translate("LabConnect", "500 Hz", 0)
+         << QApplication::translate("LabConnect", "1 kHz", 0)
+         << QApplication::translate("LabConnect", "5 kHz", 0)
+         << QApplication::translate("LabConnect", "10 kHz", 0)
+         << QApplication::translate("LabConnect", "50 kHz", 0)
+         << QApplication::translate("LabConnect", "100 kHz", 0)
+         << QApplication::translate("LabConnect", "500 kHz", 0)
+         << QApplication::translate("LabConnect", "1 MHz", 0)
+        );
         menuLabConnect->setTitle(QApplication::translate("LabConnect", "LabConnect", 0));
         menu_ber->setTitle(QApplication::translate("LabConnect", "Hilfe", 0));
     } // retranslateUi

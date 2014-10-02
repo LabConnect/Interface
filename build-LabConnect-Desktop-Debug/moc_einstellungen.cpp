@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Einstellungen_t {
-    QByteArrayData data[5];
-    char stringdata[86];
+    QByteArrayData data[6];
+    char stringdata[91];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,14 +30,15 @@ struct qt_meta_stringdata_Einstellungen_t {
 static const qt_meta_stringdata_Einstellungen_t qt_meta_stringdata_Einstellungen = {
     {
 QT_MOC_LITERAL(0, 0, 13),
-QT_MOC_LITERAL(1, 14, 21),
-QT_MOC_LITERAL(2, 36, 0),
-QT_MOC_LITERAL(3, 37, 23),
-QT_MOC_LITERAL(4, 61, 23)
+QT_MOC_LITERAL(1, 14, 23),
+QT_MOC_LITERAL(2, 38, 0),
+QT_MOC_LITERAL(3, 39, 21),
+QT_MOC_LITERAL(4, 61, 4),
+QT_MOC_LITERAL(5, 66, 23)
     },
-    "Einstellungen\0on_pushButton_clicked\0"
-    "\0on_pushButton_2_clicked\0"
-    "on_pushButton_4_clicked\0"
+    "Einstellungen\0on_pushButton_2_clicked\0"
+    "\0on_comboBox_activated\0arg1\0"
+    "on_pushButton_3_clicked\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,12 +57,12 @@ static const uint qt_meta_data_Einstellungen[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    0,   29,    2, 0x08,
-       3,    0,   30,    2, 0x08,
-       4,    0,   31,    2, 0x08,
+       3,    1,   30,    2, 0x08,
+       5,    0,   33,    2, 0x08,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    4,
     QMetaType::Void,
 
        0        // eod
@@ -72,13 +73,12 @@ void Einstellungen::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         Einstellungen *_t = static_cast<Einstellungen *>(_o);
         switch (_id) {
-        case 0: _t->on_pushButton_clicked(); break;
-        case 1: _t->on_pushButton_2_clicked(); break;
-        case 2: _t->on_pushButton_4_clicked(); break;
+        case 0: _t->on_pushButton_2_clicked(); break;
+        case 1: _t->on_comboBox_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 2: _t->on_pushButton_3_clicked(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject Einstellungen::staticMetaObject = {

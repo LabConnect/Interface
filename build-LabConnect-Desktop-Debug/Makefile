@@ -47,11 +47,13 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../LabConnect/main.cpp \
 		../LabConnect/LabConnect.cpp \
-		../LabConnect/einstellungen.cpp moc_LabConnect.cpp \
+		../LabConnect/einstellungen.cpp \
+		../LabConnect/globals.cpp moc_LabConnect.cpp \
 		moc_einstellungen.cpp
 OBJECTS       = main.o \
 		LabConnect.o \
 		einstellungen.o \
+		globals.o \
 		moc_LabConnect.o \
 		moc_einstellungen.o
 DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -345,7 +347,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/LabConnect1.0.0 || mkdir -p .tmp/LabConnect1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/LabConnect1.0.0/ && $(COPY_FILE) --parents ../LabConnect/LabConnect.h ../LabConnect/einstellungen.h .tmp/LabConnect1.0.0/ && $(COPY_FILE) --parents ../LabConnect/main.cpp ../LabConnect/LabConnect.cpp ../LabConnect/einstellungen.cpp .tmp/LabConnect1.0.0/ && $(COPY_FILE) --parents ../LabConnect/LabConnect.ui ../LabConnect/einstellungen.ui .tmp/LabConnect1.0.0/ && (cd `dirname .tmp/LabConnect1.0.0` && $(TAR) LabConnect1.0.0.tar LabConnect1.0.0 && $(COMPRESS) LabConnect1.0.0.tar) && $(MOVE) `dirname .tmp/LabConnect1.0.0`/LabConnect1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/LabConnect1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/LabConnect1.0.0/ && $(COPY_FILE) --parents ../LabConnect/LabConnect.h ../LabConnect/einstellungen.h ../LabConnect/globals.h .tmp/LabConnect1.0.0/ && $(COPY_FILE) --parents ../LabConnect/main.cpp ../LabConnect/LabConnect.cpp ../LabConnect/einstellungen.cpp ../LabConnect/globals.cpp .tmp/LabConnect1.0.0/ && $(COPY_FILE) --parents ../LabConnect/LabConnect.ui ../LabConnect/einstellungen.ui .tmp/LabConnect1.0.0/ && (cd `dirname .tmp/LabConnect1.0.0` && $(TAR) LabConnect1.0.0.tar LabConnect1.0.0 && $(COMPRESS) LabConnect1.0.0.tar) && $(MOVE) `dirname .tmp/LabConnect1.0.0`/LabConnect1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/LabConnect1.0.0
 
 
 clean:compiler_clean 
@@ -861,45 +863,10 @@ LabConnect.o: ../LabConnect/LabConnect.cpp ../LabConnect/LabConnect.h \
 		/usr/include/qt5/QtWidgets/qmessagebox.h \
 		/usr/include/qt5/QtWidgets/qdialog.h \
 		ui_LabConnect.h \
-		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtWidgets/QAction \
-		/usr/include/qt5/QtWidgets/qaction.h \
-		/usr/include/qt5/QtWidgets/qactiongroup.h \
-		/usr/include/qt5/QtWidgets/QApplication \
-		/usr/include/qt5/QtWidgets/qapplication.h \
-		/usr/include/qt5/QtCore/qcoreapplication.h \
-		/usr/include/qt5/QtCore/qeventloop.h \
-		/usr/include/qt5/QtWidgets/qdesktopwidget.h \
-		/usr/include/qt5/QtGui/qguiapplication.h \
-		/usr/include/qt5/QtGui/qinputmethod.h \
-		/usr/include/qt5/QtWidgets/QButtonGroup \
-		/usr/include/qt5/QtWidgets/qbuttongroup.h \
-		/usr/include/qt5/QtWidgets/QHeaderView \
-		/usr/include/qt5/QtWidgets/qheaderview.h \
-		/usr/include/qt5/QtWidgets/qabstractitemview.h \
-		/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
-		/usr/include/qt5/QtWidgets/qframe.h \
-		/usr/include/qt5/QtCore/qabstractitemmodel.h \
-		/usr/include/qt5/QtCore/qitemselectionmodel.h \
-		/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
-		/usr/include/qt5/QtWidgets/qstyleoption.h \
-		/usr/include/qt5/QtWidgets/qabstractspinbox.h \
-		/usr/include/qt5/QtGui/qvalidator.h \
-		/usr/include/qt5/QtCore/qregularexpression.h \
-		/usr/include/qt5/QtWidgets/qslider.h \
-		/usr/include/qt5/QtWidgets/qabstractslider.h \
-		/usr/include/qt5/QtWidgets/qstyle.h \
-		/usr/include/qt5/QtWidgets/qtabbar.h \
-		/usr/include/qt5/QtWidgets/qrubberband.h \
-		/usr/include/qt5/QtWidgets/QMenu \
-		/usr/include/qt5/QtWidgets/qmenu.h \
-		/usr/include/qt5/QtWidgets/QMenuBar \
-		/usr/include/qt5/QtWidgets/qmenubar.h \
-		/usr/include/qt5/QtWidgets/QToolBar \
-		/usr/include/qt5/QtWidgets/qtoolbar.h \
-		/usr/include/qt5/QtWidgets/QWidget \
 		../LabConnect/einstellungen.h \
-		/usr/include/qt5/QtWidgets/QDialog
+		/usr/include/qt5/QtWidgets/QDialog \
+		../LabConnect/globals.h \
+		/usr/include/qt5/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o LabConnect.o ../LabConnect/LabConnect.cpp
 
 einstellungen.o: ../LabConnect/einstellungen.cpp ../LabConnect/einstellungen.h \
@@ -1012,8 +979,64 @@ einstellungen.o: ../LabConnect/einstellungen.cpp ../LabConnect/einstellungen.h \
 		/usr/include/qt5/QtCore/qfiledevice.h \
 		/usr/include/qt5/QtGui/qvector2d.h \
 		/usr/include/qt5/QtGui/qtouchdevice.h \
-		ui_einstellungen.h
+		ui_einstellungen.h \
+		../LabConnect/LabConnect.h \
+		/usr/include/qt5/QtWidgets/QMainWindow \
+		/usr/include/qt5/QtWidgets/qmainwindow.h \
+		/usr/include/qt5/QtWidgets/qtabwidget.h \
+		/usr/include/qt5/QtGui/qicon.h \
+		/usr/include/qt5/QtWidgets/QMessageBox \
+		/usr/include/qt5/QtWidgets/qmessagebox.h \
+		../LabConnect/globals.h \
+		/usr/include/qt5/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o einstellungen.o ../LabConnect/einstellungen.cpp
+
+globals.o: ../LabConnect/globals.cpp ../LabConnect/globals.h \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/qstring.h \
+		/usr/include/qt5/QtCore/qchar.h \
+		/usr/include/qt5/QtCore/qglobal.h \
+		/usr/include/qt5/QtCore/qconfig.h \
+		/usr/include/qt5/QtCore/qfeatures.h \
+		/usr/include/qt5/QtCore/qsystemdetection.h \
+		/usr/include/qt5/QtCore/qprocessordetection.h \
+		/usr/include/qt5/QtCore/qcompilerdetection.h \
+		/usr/include/qt5/QtCore/qglobalstatic.h \
+		/usr/include/qt5/QtCore/qatomic.h \
+		/usr/include/qt5/QtCore/qbasicatomic.h \
+		/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/include/qt5/QtCore/qgenericatomic.h \
+		/usr/include/qt5/QtCore/qatomic_msvc.h \
+		/usr/include/qt5/QtCore/qatomic_integrity.h \
+		/usr/include/qt5/QtCore/qoldbasicatomic.h \
+		/usr/include/qt5/QtCore/qatomic_vxworks.h \
+		/usr/include/qt5/QtCore/qatomic_power.h \
+		/usr/include/qt5/QtCore/qatomic_alpha.h \
+		/usr/include/qt5/QtCore/qatomic_armv7.h \
+		/usr/include/qt5/QtCore/qatomic_armv6.h \
+		/usr/include/qt5/QtCore/qatomic_armv5.h \
+		/usr/include/qt5/QtCore/qatomic_bfin.h \
+		/usr/include/qt5/QtCore/qatomic_ia64.h \
+		/usr/include/qt5/QtCore/qatomic_mips.h \
+		/usr/include/qt5/QtCore/qatomic_s390.h \
+		/usr/include/qt5/QtCore/qatomic_sh4a.h \
+		/usr/include/qt5/QtCore/qatomic_sparc.h \
+		/usr/include/qt5/QtCore/qatomic_gcc.h \
+		/usr/include/qt5/QtCore/qatomic_x86.h \
+		/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		/usr/include/qt5/QtCore/qatomic_unix.h \
+		/usr/include/qt5/QtCore/qmutex.h \
+		/usr/include/qt5/QtCore/qlogging.h \
+		/usr/include/qt5/QtCore/qflags.h \
+		/usr/include/qt5/QtCore/qtypeinfo.h \
+		/usr/include/qt5/QtCore/qtypetraits.h \
+		/usr/include/qt5/QtCore/qsysinfo.h \
+		/usr/include/qt5/QtCore/qbytearray.h \
+		/usr/include/qt5/QtCore/qrefcount.h \
+		/usr/include/qt5/QtCore/qnamespace.h \
+		/usr/include/qt5/QtCore/qarraydata.h \
+		/usr/include/qt5/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o globals.o ../LabConnect/globals.cpp
 
 moc_LabConnect.o: moc_LabConnect.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_LabConnect.o moc_LabConnect.cpp
