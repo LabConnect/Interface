@@ -11,5 +11,6 @@ extern QString GVersionNumber;
 extern int GFrequenz1;
 extern int Gstep;
 extern int GcurValue;
+extern int MCLK;
 
 #endif // GLOBALS_H

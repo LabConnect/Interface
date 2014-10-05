@@ -134,3 +134,42 @@ void LabConnect::on_comboBox_activated(int index)
         break;
     }
 }
+
+void LabConnect::on_pushButton_clicked()
+{
+    QString Fpre;
+    Fpre = ui->lineEdit->text();
+    int Ffaktor;
+
+    switch (ui->comboBox_2->currentIndex()) {
+    case 0:
+        Ffaktor = 1;
+        break;
+    case 1:
+        Ffaktor = 1000;
+        break;
+    case 2:
+        Ffaktor = 1000000;
+        break;
+    default:
+        break;
+    }
+
+    int Fges = Fpre.toDouble() * Ffaktor;
+
+    GFrequenz1 =  Fges;
+    ui->lcdNumber->display(GFrequenz1);
+}
+
+void LabConnect::on_pushButton_2_clicked()
+{
+    double lokalMCLK;
+    int RegWert;
+    lokalMCLK = MCLK;
+
+    RegWert = GFrequenz1 / (lokalMCLK / 268435456);
+
+    ui->freg->setText(QString::number(RegWert, 2));
+
+
+}

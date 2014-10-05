@@ -17,6 +17,7 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +31,9 @@ public:
     QLabel *label;
     QComboBox *comboBox;
     QLabel *label_2;
+    QLabel *label_3;
+    QLineEdit *lineEdit;
+    QComboBox *comboBox_2;
 
     void setupUi(QDialog *Einstellungen)
     {
@@ -63,8 +67,23 @@ public:
         font1.setBold(true);
         font1.setWeight(75);
         label_2->setFont(font1);
+        label_3 = new QLabel(Einstellungen);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(20, 100, 71, 31));
+        label_3->setFont(font1);
+        lineEdit = new QLineEdit(Einstellungen);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(80, 100, 61, 27));
+        lineEdit->setLayoutDirection(Qt::LeftToRight);
+        lineEdit->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        comboBox_2 = new QComboBox(Einstellungen);
+        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
+        comboBox_2->setGeometry(QRect(150, 100, 61, 27));
 
         retranslateUi(Einstellungen);
+
+        comboBox_2->setCurrentIndex(2);
+
 
         QMetaObject::connectSlotsByName(Einstellungen);
     } // setupUi
@@ -89,6 +108,14 @@ public:
         );
         comboBox->setCurrentText(QApplication::translate("Einstellungen", "1200", 0));
         label_2->setText(QApplication::translate("Einstellungen", "Baudrate", 0));
+        label_3->setText(QApplication::translate("Einstellungen", "MCLK", 0));
+        lineEdit->setText(QApplication::translate("Einstellungen", "25.00", 0));
+        comboBox_2->clear();
+        comboBox_2->insertItems(0, QStringList()
+         << QApplication::translate("Einstellungen", "Hz", 0)
+         << QApplication::translate("Einstellungen", "kHz", 0)
+         << QApplication::translate("Einstellungen", "MHz", 0)
+        );
     } // retranslateUi
 
 };
