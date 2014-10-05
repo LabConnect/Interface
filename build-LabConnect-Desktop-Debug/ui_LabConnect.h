@@ -50,8 +50,6 @@ public:
     QPushButton *pushButton_2;
     QLabel *label_2;
     QComboBox *comboBox_3;
-    QLabel *creg;
-    QLabel *freg;
     QMenuBar *menuBar;
     QMenu *menuLabConnect;
     QMenu *menu_ber;
@@ -138,12 +136,6 @@ public:
         comboBox_3 = new QComboBox(centralWidget);
         comboBox_3->setObjectName(QStringLiteral("comboBox_3"));
         comboBox_3->setGeometry(QRect(130, 180, 91, 27));
-        creg = new QLabel(centralWidget);
-        creg->setObjectName(QStringLiteral("creg"));
-        creg->setGeometry(QRect(30, 250, 311, 17));
-        freg = new QLabel(centralWidget);
-        freg->setObjectName(QStringLiteral("freg"));
-        freg->setGeometry(QRect(30, 270, 311, 17));
         LabConnect->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(LabConnect);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -223,8 +215,6 @@ public:
          << QApplication::translate("LabConnect", "Dreieck", 0)
          << QApplication::translate("LabConnect", "Rechteck", 0)
         );
-        creg->setText(QApplication::translate("LabConnect", "TextLabel", 0));
-        freg->setText(QApplication::translate("LabConnect", "TextLabel", 0));
         menuLabConnect->setTitle(QApplication::translate("LabConnect", "LabConnect", 0));
         menu_ber->setTitle(QApplication::translate("LabConnect", "Hilfe", 0));
     } // retranslateUi

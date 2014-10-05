@@ -3,6 +3,9 @@
 
 #include <QDialog>
 
+//#include <QtSerialPort/QSerialPort>
+//#include <QtSerialPort/QSerialPortInfo>
+
 namespace Ui {
 class Einstellungen;
 }

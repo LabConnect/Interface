@@ -2,8 +2,8 @@
 #define LabConnect_H
 
 #include <QMainWindow>
-// #include <QtSerialPort/QSerialPort>
-// #include <QtSerialPort/QSerialPortInfo>
+//#include <QtSerialPort/QSerialPort>
+//#include <QtSerialPort/QSerialPortInfo>
 #include <QMessageBox>
 #include <string>
 
@@ -34,6 +34,8 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_actionGer_te_neu_laden_triggered();
 
 private:
     Ui::LabConnect *ui;

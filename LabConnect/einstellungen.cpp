@@ -1,8 +1,12 @@
 #include "einstellungen.h"
 #include "ui_einstellungen.h"
 #include "LabConnect.h"
-#include <QMessageBox>
 #include "globals.h"
+
+#include <QMessageBox>
+//#include <QtSerialPort>
+//#include <QSerialPortInfo>
+
 
 QString BaudRate;
 

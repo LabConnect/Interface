@@ -1,5 +1,10 @@
 #include "globals.h"
 #include <QString>
+//#include <QtSerialPort>
+//#include <QSerialPortInfo>
+
+
+//QSerialPort Port1;
 
 QString GBaudRate = "19200";
 QString GVersionNumber = "0.1";

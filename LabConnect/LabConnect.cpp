@@ -1,9 +1,11 @@
 #include "LabConnect.h"
 #include "ui_LabConnect.h"
-// #include <QtSerialPort/QtSerialPort>
 #include "einstellungen.h"
-#include <QMessageBox>
 #include "globals.h"
+
+#include <QMessageBox>
+//#include <QtSerialPort>
+//#include <QSerialPortInfo>
 
 
 LabConnect::LabConnect(QWidget *parent) :
@@ -130,7 +132,6 @@ void LabConnect::on_comboBox_activated(int index)
         Gstep = 1000000;
         break;
     default:
-        Gstep = 1000;
         break;
     }
 }
@@ -163,13 +164,49 @@ void LabConnect::on_pushButton_clicked()
 
 void LabConnect::on_pushButton_2_clicked()
 {
+    //deklarieren lokaler Variablen
     double lokalMCLK;
-    int RegWert;
+    int RegWert, nullen;
+    QString RegWertBin, NullStr, MSB, LSB;
     lokalMCLK = MCLK;
 
+
+    //Wert für das Frequenzregister berechnen
     RegWert = GFrequenz1 / (lokalMCLK / 268435456);
 
-    ui->freg->setText(QString::number(RegWert, 2));
+    //Umwandlung in Binär
+    RegWertBin = QString::number(RegWert, 2);
 
+    //Herausfinden, wie viele nullen angehängt werden müssen
+    nullen = 28 - RegWertBin.length();
+    NullStr = "";
+
+    while (NullStr.length() != nullen) {
+        NullStr = NullStr + "0";
+    }
+
+
+    RegWertBin = NullStr + RegWertBin;
+
+    //Bitschubserei für Register
+    QStringRef Teil1(&RegWertBin, 0, 14);
+    QStringRef Teil2(&RegWertBin, 14, 14);
+
+    //Adresse für FReg1 Anhängen
+    MSB = "01" + Teil1.toString();
+    LSB = "01" + Teil2.toString();
+
+    //Für Bascom SPI vorbereiten
+    QStringRef M1(&MSB, 0, 8);
+    QStringRef M2(&MSB, 8, 8);
+    QStringRef L1(&LSB, 0, 8);
+    QStringRef L2(&LSB, 8, 8);
+
+    MSB = M2.toString() + M1.toString();
+    LSB = L2.toString() + L1.toString();
+}
+
+void LabConnect::on_actionGer_te_neu_laden_triggered()
+{
 
 }
