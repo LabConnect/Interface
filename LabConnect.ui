@@ -87,7 +87,7 @@
      <rect>
       <x>20</x>
       <y>11</y>
-      <width>90</width>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -105,9 +105,9 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>510</x>
       <y>0</y>
-      <width>41</width>
+      <width>51</width>
       <height>31</height>
      </rect>
     </property>
@@ -269,7 +269,7 @@
      <rect>
       <x>20</x>
       <y>183</y>
-      <width>101</width>
+      <width>121</width>
       <height>20</height>
      </rect>
     </property>
@@ -287,7 +287,7 @@
    <widget class="QComboBox" name="comboBox_3">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>150</x>
       <y>180</y>
       <width>91</width>
       <height>27</height>
@@ -319,7 +319,7 @@
      <x>0</x>
      <y>0</y>
      <width>669</width>
-     <height>25</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLabConnect">

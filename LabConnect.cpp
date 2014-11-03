@@ -1,11 +1,9 @@
 #include "LabConnect.h"
 #include "ui_LabConnect.h"
+#include <QtSerialPort/QtSerialPort>
 #include "einstellungen.h"
-#include "globals.h"
-
 #include <QMessageBox>
-//#include <QtSerialPort>
-//#include <QSerialPortInfo>
+#include "globals.h"
 
 
 LabConnect::LabConnect(QWidget *parent) :
@@ -44,8 +42,8 @@ void LabConnect::on_actionEinstellungen_2_triggered()
 void LabConnect::on_dial_valueChanged(int value)
 {
 
-    int newValue = value;
-    int change = GcurValue - newValue;
+    float newValue = value;
+    float change = GcurValue - newValue;
 
     if (newValue == 0)
     {
@@ -164,6 +162,8 @@ void LabConnect::on_pushButton_clicked()
 
 void LabConnect::on_pushButton_2_clicked()
 {
+/**
+
     //deklarieren lokaler Variablen
     double lokalMCLK;
     int RegWert, nullen;
@@ -204,9 +204,17 @@ void LabConnect::on_pushButton_2_clicked()
 
     MSB = M2.toString() + M1.toString();
     LSB = L2.toString() + L1.toString();
-}
+**/
 
-void LabConnect::on_actionGer_te_neu_laden_triggered()
-{
+
+    QMessageBox Ausgabe;
+    Ausgabe.setText(QString::number(GFrequenz1));
+    Ausgabe.exec();
+    float MCLK = 25000000;
+    float size = 268435456;
+    float RegisterWert = GFrequenz1 / (MCLK/size);
+    double gerundet = RegisterWert;
+    Ausgabe.setText(QString::number(gerundet));
+    Ausgabe.exec();
 
 }

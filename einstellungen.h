@@ -27,6 +27,12 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_setting_abort_clicked();
+
+    void on_setting_std_clicked();
+
+    void on_setting_ok_clicked();
+
 private:
     Ui::Einstellungen *ui;
 };
