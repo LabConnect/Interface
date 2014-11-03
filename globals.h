@@ -15,6 +15,8 @@ extern int GFrequenz1;
 extern int Gstep;
 extern int GcurValue;
 extern int MCLK;
+extern double GuOffset;
+extern double GuAusgang;
 
 // extern QSerialPort Port1;
 

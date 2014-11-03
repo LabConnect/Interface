@@ -160,7 +160,7 @@ void LabConnect::on_pushButton_clicked()
     ui->lcdNumber->display(GFrequenz1);
 }
 
-void LabConnect::on_pushButton_2_clicked()
+void LabConnect::on_commit_button_clicked()
 {
 /**
 
@@ -208,13 +208,45 @@ void LabConnect::on_pushButton_2_clicked()
 
 
     QMessageBox Ausgabe;
-    Ausgabe.setText(QString::number(GFrequenz1));
-    Ausgabe.exec();
+
     float MCLK = 25000000;
     float size = 268435456;
+
     float RegisterWert = GFrequenz1 / (MCLK/size);
     double gerundet = RegisterWert;
-    Ausgabe.setText(QString::number(gerundet));
+
+
+    //Etwas Debug-Ausgabe....
+    Ausgabe.setText("<Registerwert> " + QString::number(gerundet));
     Ausgabe.exec();
 
+    Ausgabe.setText("<Ausgangs-Spannung> " + QString::number(GuAusgang));
+    Ausgabe.exec();
+
+    Ausgabe.setText("<Offset-Spannung> " + QString::number(GuOffset));
+    Ausgabe.exec();
+
+    Ausgabe.setText("<U-out-regwert> " + QString::number(LabConnect::regwert_u_out()));
+    Ausgabe.exec();
+
+}
+
+void LabConnect::on_u_out_valueChanged(double arg1)
+{
+    GuAusgang = arg1;
+}
+
+void LabConnect::on_u_offset_valueChanged(double arg1)
+{
+    GuOffset = arg1;
+}
+
+int LabConnect::regwert_u_out()
+{
+    float umax = 12;
+    float bits = 512;
+    float ergebnis;
+    ergebnis = GuAusgang / (umax / bits);
+    int wert = ergebnis;
+    return wert;
 }

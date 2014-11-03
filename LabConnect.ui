@@ -251,7 +251,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="commit_button">
     <property name="geometry">
      <rect>
       <x>558</x>
@@ -284,7 +284,7 @@
      <string>Signalform</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_3">
+   <widget class="QComboBox" name="form_out">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -336,7 +336,7 @@
     <property name="geometry">
      <rect>
       <x>24</x>
-      <y>250</y>
+      <y>252</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -352,7 +352,7 @@
      <string>Offsetspannung</string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QDoubleSpinBox" name="u_out">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -361,8 +361,17 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="minimum">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>12.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.050000000000000</double>
+    </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+   <widget class="QDoubleSpinBox" name="u_offset">
     <property name="geometry">
      <rect>
       <x>207</x>
@@ -370,6 +379,55 @@
       <width>68</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <double>-6.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>6.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>283</x>
+      <y>253</y>
+      <width>16</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>V</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>325</x>
+      <y>218</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Vss</string>
     </property>
    </widget>
   </widget>

@@ -33,7 +33,13 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_commit_button_clicked();
+
+    void on_u_out_valueChanged(double arg1);
+
+    void on_u_offset_valueChanged(double arg1);
+
+    int regwert_u_out();
 
 private:
     Ui::LabConnect *ui;
