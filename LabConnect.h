@@ -35,8 +35,6 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_actionGer_te_neu_laden_triggered();
-
 private:
     Ui::LabConnect *ui;
 };
