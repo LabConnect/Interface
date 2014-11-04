@@ -39,7 +39,9 @@ private slots:
 
     void on_u_offset_valueChanged(double arg1);
 
-    int regwert_u_out();
+    void regwert_u_out();
+
+    void regwert_offset();
 
 private:
     Ui::LabConnect *ui;

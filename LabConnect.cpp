@@ -68,23 +68,6 @@ void LabConnect::on_dial_valueChanged(int value)
      }
     GcurValue = newValue;
     ui->lcdNumber->display(GFrequenz1);
-
-/*
-    if (GFrequenz1 <= 12500000 && 0 <= GFrequenz1)
-    {
-            ui->lcdNumber->display(GFrequenz1);
-    }
-    else
-    {
-           if (GFrequenz1 <= 12500000)
-           {
-            GFrequenz1 = 12500000;
-            }
-           else if (GFrequenz1 <= 12500000)
-           {
-             GFrequenz1 = 12500000;
-            }
-     } */
 }
 
 void LabConnect::on_comboBox_activated(int index)
@@ -162,73 +145,48 @@ void LabConnect::on_pushButton_clicked()
 
 void LabConnect::on_commit_button_clicked()
 {
-/**
-
-    //deklarieren lokaler Variablen
-    double lokalMCLK;
-    int RegWert, nullen;
-    QString RegWertBin, NullStr, MSB, LSB;
-    lokalMCLK = MCLK;
-
-
-    //Wert für das Frequenzregister berechnen
-    RegWert = GFrequenz1 / (lokalMCLK / 268435456);
-
-    //Umwandlung in Binär
-    RegWertBin = QString::number(RegWert, 2);
-
-    //Herausfinden, wie viele nullen angehängt werden müssen
-    nullen = 28 - RegWertBin.length();
-    NullStr = "";
-
-    while (NullStr.length() != nullen) {
-        NullStr = NullStr + "0";
-    }
-
-
-    RegWertBin = NullStr + RegWertBin;
-
-    //Bitschubserei für Register
-    QStringRef Teil1(&RegWertBin, 0, 14);
-    QStringRef Teil2(&RegWertBin, 14, 14);
-
-    //Adresse für FReg1 Anhängen
-    MSB = "01" + Teil1.toString();
-    LSB = "01" + Teil2.toString();
-
-    //Für Bascom SPI vorbereiten
-    QStringRef M1(&MSB, 0, 8);
-    QStringRef M2(&MSB, 8, 8);
-    QStringRef L1(&LSB, 0, 8);
-    QStringRef L2(&LSB, 8, 8);
-
-    MSB = M2.toString() + M1.toString();
-    LSB = L2.toString() + L1.toString();
-**/
-
-
     QMessageBox Ausgabe;
+    float MCLK = 25000000, Register = 268435456;
 
-    float MCLK = 25000000;
-    float size = 268435456;
+    float teiler = MCLK / Register;
+    int FRegWert = GFrequenz1 / teiler;
 
-    float RegisterWert = GFrequenz1 / (MCLK/size);
-    double gerundet = RegisterWert;
+    //block1=lsb --> block4=msb
+    unsigned char block1, block2, block3, block4;
+
+    block1 = FRegWert;
+    FRegWert = FRegWert >> 8;
+    block2 = FRegWert;
+    block2 = (block2 | 0x40) & (~0x80);
+    FRegWert = FRegWert >> 6;
+    block3 = FRegWert;
+    FRegWert = FRegWert >> 8;
+    block4 = FRegWert;
+    block4 = (block4 | 0x40) & (~0x80);
 
 
-    //Etwas Debug-Ausgabe....
-    Ausgabe.setText("<Registerwert> " + QString::number(gerundet));
+    Ausgabe.setText("<Block1> " + QString::number(block1,2));
     Ausgabe.exec();
 
-    Ausgabe.setText("<Ausgangs-Spannung> " + QString::number(GuAusgang));
+    Ausgabe.setText("<Block2> " + QString::number(block2,2));
     Ausgabe.exec();
 
-    Ausgabe.setText("<Offset-Spannung> " + QString::number(GuOffset));
+    Ausgabe.setText("<Block3> " + QString::number(block3,2));
     Ausgabe.exec();
 
-    Ausgabe.setText("<U-out-regwert> " + QString::number(LabConnect::regwert_u_out()));
+    Ausgabe.setText("<Block4> " + QString::number(block4,2));
     Ausgabe.exec();
 
+
+
+
+
+/*
+    LabConnect::regwert_u_out();
+    LabConnect::regwert_offset();
+
+    Ausgabe.setText("<Signalform> " + ui->form_out->currentText());
+    Ausgabe.exec(); */
 }
 
 void LabConnect::on_u_out_valueChanged(double arg1)
@@ -241,12 +199,62 @@ void LabConnect::on_u_offset_valueChanged(double arg1)
     GuOffset = arg1;
 }
 
-int LabConnect::regwert_u_out()
+void LabConnect::regwert_u_out()
 {
-    float umax = 12;
-    float bits = 512;
-    float ergebnis;
-    ergebnis = GuAusgang / (umax / bits);
-    int wert = ergebnis;
-    return wert;
+    float umax = 12, bits = 510;
+    int Register1, Register2;
+
+    int ergebnis = (GuAusgang / (umax / bits));
+
+    if (ergebnis%2==0)
+    {
+        Register1 = 255 - ergebnis / 2;
+        Register2 = 255 - ergebnis / 2;
+    }
+    else
+    {
+        ergebnis = ergebnis- 1;
+        Register1 = 255-((ergebnis / 2) + 1);
+        Register2 = 255 - ergebnis / 2;
+    }
+
+    //hier kommt dann die serielle Ausgabe hin
+    QMessageBox Debug;
+    Debug.setText("<UOut-Reg1> " + QString::number(Register1));
+    Debug.exec();
+
+    Debug.setText("<UOut-Reg2> " + QString::number(Register2));
+    Debug.exec();
+
+    return;
+}
+
+void LabConnect::regwert_offset()
+{
+    float uges = 12, bits = 510;
+    int Register1, Register2;
+
+    int ergebnis = ((GuOffset + 6) / (uges / bits));
+
+    if (ergebnis%2==0)
+    {
+        Register1 = ergebnis / 2;
+        Register2 = ergebnis / 2;
+    }
+    else
+    {
+        ergebnis = ergebnis- 1;
+        Register1 = (ergebnis / 2) + 1;
+        Register2 = ergebnis / 2;
+    }
+
+    //hier kommt dann die serielle Ausgabe hin
+    QMessageBox Debug;
+    Debug.setText("<Offset-Reg1> " + QString::number(Register1));
+    Debug.exec();
+
+    Debug.setText("<Offset-Reg2> " + QString::number(Register2));
+    Debug.exec();
+
+    return;
 }
