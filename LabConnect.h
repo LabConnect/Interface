@@ -43,6 +43,8 @@ private slots:
 
     void regwert_offset();
 
+    void set_current_c();
+
 private:
     Ui::LabConnect *ui;
 };

@@ -164,7 +164,6 @@ void LabConnect::on_commit_button_clicked()
     block4 = FRegWert;
     block4 = (block4 | 0x40) & (~0x80);
 
-
     Ausgabe.setText("<Block1> " + QString::number(block1,2));
     Ausgabe.exec();
 
@@ -179,14 +178,12 @@ void LabConnect::on_commit_button_clicked()
 
 
 
-
-
-/*
+    LabConnect::set_current_c();
     LabConnect::regwert_u_out();
     LabConnect::regwert_offset();
 
     Ausgabe.setText("<Signalform> " + ui->form_out->currentText());
-    Ausgabe.exec(); */
+    Ausgabe.exec();
 }
 
 void LabConnect::on_u_out_valueChanged(double arg1)
@@ -257,4 +254,46 @@ void LabConnect::regwert_offset()
     Debug.exec();
 
     return;
+}
+
+void LabConnect::set_current_c()
+{
+    QMessageBox Debug;
+
+    switch (ui->form_out->currentIndex()) {
+    case 0:
+        if (GFrequenz1 <= 10)
+        {
+            Debug.setText("<Sinus> Stellung1");
+        }
+        else if (GFrequenz1 <= 1000)
+        {
+            Debug.setText("<Sinus> Stellung2");
+        }
+        else
+        {
+            Debug.setText("<Sinus> Stellung3");
+        }
+        break;
+    case 1:
+        if (GFrequenz1 <= 10)
+        {
+            Debug.setText("<Dreieck> Stellung1");
+        }
+        else if (GFrequenz1 <= 1000)
+        {
+            Debug.setText("<Dreieck> Stellung2");
+        }
+        else
+        {
+            Debug.setText("<Dreieck> Stellung3");
+        }
+        break;
+    case 2:
+        Debug.setText("<Rechteck> Stellung4");
+        break;
+    default:
+        break;
+    }
+    Debug.exec();
 }
