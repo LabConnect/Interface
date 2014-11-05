@@ -44,8 +44,6 @@ void Einstellungen::on_setting_std_clicked()
     ui->comboBox->setCurrentIndex(4);
     GBaudRate = ui->comboBox->currentText();
     BaudRate = GBaudRate;
-    ui->comboBox_2->setCurrentIndex(2);
-    ui->lineEdit->setText("25.00");
 }
 
 void Einstellungen::on_setting_ok_clicked()
