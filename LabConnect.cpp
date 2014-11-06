@@ -80,21 +80,9 @@ void LabConnect::on_pushButton_clicked()
 {
     QString Fpre;
     Fpre = ui->lineEdit->text();
-    int Ffaktor;
 
-    switch (ui->comboBox_2->currentIndex()) {
-    case 0:
-        Ffaktor = 1;
-        break;
-    case 1:
-        Ffaktor = 1000;
-        break;
-    case 2:
-        Ffaktor = 1000000;
-        break;
-    default:
-        break;
-    }
+    int multi[] = {1,1000,1000000};
+    int Ffaktor = multi[ui->comboBox_2->currentIndex()];
 
     int Fges = Fpre.toDouble() * Ffaktor;
 
