@@ -72,49 +72,8 @@ void LabConnect::on_dial_valueChanged(int value)
 
 void LabConnect::on_comboBox_activated(int index)
 {
-    switch (index) {
-    case 0:
-        Gstep = 1;
-        break;
-    case 1:
-        Gstep = 5;
-        break;
-    case 2:
-        Gstep = 10;
-        break;
-    case 3:
-        Gstep = 50;
-        break;
-    case 4:
-        Gstep = 100;
-        break;
-    case 5:
-        Gstep = 500;
-        break;
-    case 6:
-        Gstep = 1000;
-        break;
-    case 7:
-        Gstep = 5000;
-        break;
-    case 8:
-        Gstep = 10000;
-        break;
-    case 9:
-        Gstep = 50000;
-        break;
-    case 10:
-        Gstep = 100000;
-        break;
-    case 11:
-        Gstep = 500000;
-        break;
-    case 12:
-        Gstep = 1000000;
-        break;
-    default:
-        break;
-    }
+    int step[] = {1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000};
+    Gstep = step[index];
 }
 
 void LabConnect::on_pushButton_clicked()
@@ -260,34 +219,27 @@ void LabConnect::set_current_c()
 {
     QMessageBox Debug;
 
+    int pos;
+
+    if (GFrequenz1 <= 10)
+    {
+        pos = 1;
+    }
+    else if (GFrequenz1 <= 1000)
+    {
+        pos = 2;
+    }
+    else
+    {
+        pos = 3;
+    }
+
     switch (ui->form_out->currentIndex()) {
     case 0:
-        if (GFrequenz1 <= 10)
-        {
-            Debug.setText("<Sinus> Stellung1");
-        }
-        else if (GFrequenz1 <= 1000)
-        {
-            Debug.setText("<Sinus> Stellung2");
-        }
-        else
-        {
-            Debug.setText("<Sinus> Stellung3");
-        }
+        Debug.setText("<Sinus> Stellung"+ QString::number(pos));
         break;
     case 1:
-        if (GFrequenz1 <= 10)
-        {
-            Debug.setText("<Dreieck> Stellung1");
-        }
-        else if (GFrequenz1 <= 1000)
-        {
-            Debug.setText("<Dreieck> Stellung2");
-        }
-        else
-        {
-            Debug.setText("<Dreieck> Stellung3");
-        }
+        Debug.setText("<Dreieck> Stellung"+ QString::number(pos));
         break;
     case 2:
         Debug.setText("<Rechteck> Stellung4");
