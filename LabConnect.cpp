@@ -1,7 +1,5 @@
 #include "LabConnect.h"
 #include "ui_LabConnect.h"
-#include <QtSerialPort/QtSerialPort>
-#include "einstellungen.h"
 #include <QMessageBox>
 #include "globals.h"
 
@@ -29,14 +27,6 @@ void LabConnect::on_actionVersion_triggered()
     QMessageBox Version;
     Version.setText("LabConnect Version " + GVersionNumber);
     Version.exec();
-}
-
-void LabConnect::on_actionEinstellungen_2_triggered()
-{
-    Einstellungen settings;
-    LabConnect me;
-    me.setEnabled(false);
-    settings.exec();
 }
 
 void LabConnect::on_dial_valueChanged(int value)

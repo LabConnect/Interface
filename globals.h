@@ -2,9 +2,6 @@
 #define GLOBALS_H
 #include <QString>
 
-//#include <QtSerialPort/QSerialPort>
-//#include <QtSerialPort/QSerialPortInfo>
-
 namespace globals {
 class Qstring;
 }
@@ -18,6 +15,6 @@ extern int MCLK;
 extern double GuOffset;
 extern double GuAusgang;
 
-// extern QSerialPort Port1;
+
 
 #endif // GLOBALS_H
