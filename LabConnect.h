@@ -2,8 +2,6 @@
 #define LabConnect_H
 
 #include <QMainWindow>
-//#include <QtSerialPort/QSerialPort>
-//#include <QtSerialPort/QSerialPortInfo>
 #include <QMessageBox>
 #include <string>
 
@@ -25,8 +23,6 @@ private slots:
 
     void on_actionVersion_triggered();
 
-    void on_actionEinstellungen_2_triggered();
-
     void on_dial_valueChanged(int value);
 
     void on_comboBox_activated(int index);
@@ -38,12 +34,6 @@ private slots:
     void on_u_out_valueChanged(double arg1);
 
     void on_u_offset_valueChanged(double arg1);
-
-    void regwert_u_out();
-
-    void regwert_offset();
-
-    void set_current_c();
 
 private:
     Ui::LabConnect *ui;

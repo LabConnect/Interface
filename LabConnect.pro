@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 QT       += core gui
-# QT       += serialport
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,12 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         LabConnect.cpp \
-    einstellungen.cpp \
-    globals.cpp
+    globals.cpp \
+    libSgen-V0.1.cpp
 
 HEADERS  += LabConnect.h \
-    einstellungen.h \
-    globals.h
+    globals.h \
+    libSgen-V0.1.h
 
-FORMS    += LabConnect.ui \
-    einstellungen.ui
+FORMS    += LabConnect.ui
+
+OTHER_FILES +=

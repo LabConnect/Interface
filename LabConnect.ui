@@ -445,7 +445,6 @@
      <string>LabConnect</string>
     </property>
     <addaction name="actionGer_te_neu_laden"/>
-    <addaction name="actionEinstellungen_2"/>
     <addaction name="separator"/>
     <addaction name="actionAlle_Verbindungen_trennen"/>
     <addaction name="actionBeenden"/>
