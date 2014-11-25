@@ -8,7 +8,7 @@ void regwert_u_out(int);
 
 void regwert_offset(int);
 
-void set_current_c(int, int);
+void set_waveform(int);
 
 void set_frequency(int);
 

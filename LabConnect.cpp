@@ -1,15 +1,18 @@
 #include "LabConnect.h"
 #include "ui_LabConnect.h"
 #include <QMessageBox>
-#include "globals.h"
 #include "libSgen-V0.1.h"
 
+QString VersionNumber = "V0.3";
+int curValue = 1750;
+int step = 1000;
+int Frequenz1 = 1750;
 LabConnect::LabConnect(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LabConnect)
 {
     ui->setupUi(this);
-    ui->dial->setValue(GcurValue);
+    ui->dial->setValue(curValue);
 }
 
 LabConnect::~LabConnect()
@@ -25,7 +28,7 @@ void LabConnect::on_actionBeenden_triggered()
 void LabConnect::on_actionVersion_triggered()
 {
     QMessageBox Version;
-    Version.setText("LabConnect Version " + GVersionNumber);
+    Version.setText("LabConnect Version " + VersionNumber);
     Version.exec();
 }
 
@@ -33,37 +36,38 @@ void LabConnect::on_dial_valueChanged(int value)
 {
 
     float newValue = value;
-    float change = GcurValue - newValue;
+    float change = curValue - newValue;
 
     if (newValue == 0)
     {
-        if (GcurValue == 100)
-            GFrequenz1 = GFrequenz1 + Gstep;
+        if (curValue == 100)
+            Frequenz1 = Frequenz1 + step;
         else
-            GFrequenz1 = GFrequenz1 - Gstep;
+            Frequenz1 = Frequenz1 - step;
     }
     else if (newValue == 100)
     {
-        if (GcurValue == 0)
-            GFrequenz1 = GFrequenz1 - Gstep;
+        if (curValue == 0)
+            Frequenz1 = Frequenz1 - step;
         else
-            GFrequenz1 = GFrequenz1 + Gstep;
+            Frequenz1 = Frequenz1 + step;
     }
     else
     {
         if (change < 0)
-            GFrequenz1 = GFrequenz1 + Gstep;
+            Frequenz1 = Frequenz1 + step;
         else
-            GFrequenz1 = GFrequenz1 - Gstep;
+            Frequenz1 = Frequenz1 - step;
      }
-    GcurValue = newValue;
-    ui->lcdNumber->display(GFrequenz1);
+    curValue = newValue;
+    ui->lcdNumber->display(Frequenz1);
+    Sgen::set_frequency(Frequenz1);
 }
 
 void LabConnect::on_comboBox_activated(int index)
 {
-    int step[] = {1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000};
-    Gstep = step[index];
+    int step_local[] = {1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000};
+    step = step_local[index];
 }
 
 void LabConnect::on_pushButton_clicked()
@@ -82,7 +86,7 @@ void LabConnect::on_pushButton_clicked()
 
 void LabConnect::on_commit_button_clicked()
 {
-    Sgen::set_current_c(ui->form_out->currentIndex(), GFrequenz1);
+    Sgen::set_waveform(ui->form_out->currentIndex());
     Sgen::commit_data();
 
 }

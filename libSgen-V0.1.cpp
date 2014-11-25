@@ -1,8 +1,7 @@
 #include <QMessageBox>
 #include "libSgen-V0.1.h"
-#include "globals.h"
 
-unsigned char output_data[] = {0x00, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x00};
+unsigned char output_data[] = {0x00, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01};
 /* 0 CReg1
  * 1 Creg2
  * 2 Freg1
@@ -16,6 +15,9 @@ unsigned char output_data[] = {0x00, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0
  * 10 Kondensatoren
  * Eine vordefinition der Werte ist nötig!
  */
+
+
+bool rechteck = false;
 
 void Sgen::regwert_u_out(int uAmplitude)
 {
@@ -64,39 +66,16 @@ void Sgen::regwert_offset(int uOffset)
     return;
 }
 
-void Sgen::set_current_c(int Form, int Frequenz)
+void Sgen::set_waveform(int Form)
 {
-    QMessageBox Debug;
-
-    int pos;
-
-    if (Frequenz <= 10)
+    if (Form == 2)
     {
-        pos = 1;
-    }
-    else if (Frequenz <= 1000)
-    {
-        pos = 2;
+        rechteck = true;
     }
     else
     {
-        pos = 3;
+        rechteck = false;
     }
-
-    switch (Form) {
-    case 0: //Dignalform Sinus
-        Debug.setText("<Sinus> Stellung"+ QString::number(pos));
-        break;
-    case 1: //Signalform Dreieck
-        Debug.setText("<Dreieck> Stellung"+ QString::number(pos));
-        break;
-    case 2: //Signalform Rechteck
-        Debug.setText("<Rechteck> Stellung4");
-        break;
-    default:
-        break;
-    }
-    Debug.exec();
     return;
 }
 
@@ -124,7 +103,29 @@ void Sgen::set_frequency(int Frequenz)
     output_data[3] = block2;
     output_data[4] = block3;
     output_data[5] = block4;
-    return;
+
+
+    if (rechteck == true)
+    {
+        output_data[10] = 3;
+    }
+    else
+    {
+        if (Frequenz < 500)
+        {
+            output_data[10] = 3;
+        }
+        else if (Frequenz < 10000)
+        {
+            output_data[10] = 2;
+        }
+        else
+        {
+            output_data[10] = 1;
+        }
+    }
+
+
 }
 
 void Sgen::commit_data()

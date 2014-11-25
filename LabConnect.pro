@@ -14,11 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         LabConnect.cpp \
-    globals.cpp \
     libSgen-V0.1.cpp
 
 HEADERS  += LabConnect.h \
-    globals.h \
     libSgen-V0.1.h
 
 FORMS    += LabConnect.ui
