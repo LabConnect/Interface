@@ -35,6 +35,8 @@ private slots:
 
     void on_u_offset_valueChanged(double arg1);
 
+    void on_actionGer_te_neu_laden_triggered();
+
 private:
     Ui::LabConnect *ui;
 };

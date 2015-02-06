@@ -1,5 +1,13 @@
 #include <QMessageBox>
 #include "libSgen-V0.1.h"
+#include <QTimer>
+
+extern "C" {              /*include C Header*/
+#include "usb/hiddata.h"
+#include "usb/usbconfig.h"
+}
+
+usbDevice_t *dev = NULL;
 
 unsigned char output_data[] = {0x00, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01};
 /* 0 CReg1
@@ -128,14 +136,37 @@ void Sgen::set_frequency(int Frequenz)
 
 }
 
+static usbDevice_t  *openDevice(void)
+{
+usbDevice_t     *dev = NULL;
+unsigned char   rawVid[2] = {USB_CFG_VENDOR_ID}, rawPid[2] = {USB_CFG_DEVICE_ID};
+char            vendorName[] = {USB_CFG_VENDOR_NAME, 0}, productName[] = {USB_CFG_DEVICE_NAME, 0};
+int             vid = rawVid[0] + 256 * rawVid[1];
+int             pid = rawPid[0] + 256 * rawPid[1];
+    usbhidOpenDevice(&dev, vid, vendorName, pid, productName, 0);
+    return dev;
+}
+
 void Sgen::commit_data()
 {
+    usbhidSetReport(dev,output_data,sizeof(output_data));
+
+
+
+
+    /*
     for (int i=0;i<11;i++)
     {
         QMessageBox Ausgabe;
         Ausgabe.setText("<Array, Stelle " + QString::number(i) + " > " + QString::number(output_data[i],16));
         Ausgabe.exec();
     }
-
+    //*/
     return;
+}
+
+void Sgen::openUSB()
+{
+    if((dev=openDevice())==NULL)
+            exit(1);
 }

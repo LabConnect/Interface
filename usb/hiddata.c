@@ -277,7 +277,7 @@ void    usbhidCloseDevice(usbDevice_t *device)
 
 /* ------------------------------------------------------------------------- */
 
-int usbhidSetReport(usbDevice_t *device, char *buffer, int len)
+int usbhidSetReport(usbDevice_t *device, unsigned char *buffer, int len)
 {
 int bytesSent, reportId = buffer[0];
 

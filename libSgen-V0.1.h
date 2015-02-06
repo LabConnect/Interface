@@ -16,4 +16,6 @@ void commit_data();
 
 void preset_data(unsigned char);
 
+void openUSB();
+
 }

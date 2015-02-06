@@ -100,3 +100,8 @@ void LabConnect::on_u_offset_valueChanged(double arg1)
 {
     Sgen::regwert_offset(arg1);
 }
+
+void LabConnect::on_actionGer_te_neu_laden_triggered()
+{
+    Sgen::openUSB();
+}
