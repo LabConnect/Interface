@@ -133,7 +133,7 @@ void Sgen::commit_data()
     for (int i=0;i<11;i++)
     {
         QMessageBox Ausgabe;
-        Ausgabe.setText("<Array, Stelle " + QString::number(i) + " > " + QString::number(output_data[i],2));
+        Ausgabe.setText("<Array, Stelle " + QString::number(i) + " > " + QString::number(output_data[i],16));
         Ausgabe.exec();
     }
 

@@ -14,11 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         LabConnect.cpp \
-    libSgen-V0.1.cpp
+    libSgen-V0.1.cpp \
+    usb/hiddata.c
 
 HEADERS  += LabConnect.h \
-    libSgen-V0.1.h
+    libSgen-V0.1.h \
+    usb/hiddata.h \
+    usb/usbconfig.h
 
 FORMS    += LabConnect.ui
+
+LIBS += -L/usr/lib -lusb
 
 OTHER_FILES +=
