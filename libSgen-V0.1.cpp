@@ -9,7 +9,7 @@ extern "C" {              /*include C Header*/
 
 usbDevice_t *dev = NULL;
 
-unsigned char output_data[] = {0x00, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01};
+unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01};
 /* 0 CReg1
  * 1 Creg2
  * 2 Freg1
@@ -149,10 +149,13 @@ int             pid = rawPid[0] + 256 * rawPid[1];
 
 void Sgen::commit_data()
 {
-    usbhidSetReport(dev,output_data,sizeof(output_data));
+    if(usbhidSetReport(dev,output_data,sizeof(output_data)) == NULL)
+    {
+        QMessageBox error;
+        error.setText("FEHLER! Die Verbindung zum USB-Gerät wurde unterbrochen. Bitte prüfe die Verbindungen und versuche es erneut.");
+        error.exec();
 
-
-
+    }
 
     /*
     for (int i=0;i<11;i++)
@@ -165,8 +168,14 @@ void Sgen::commit_data()
     return;
 }
 
-void Sgen::openUSB()
+int Sgen::openUSB()
 {
     if((dev=openDevice())==NULL)
-            exit(1);
+    {
+        QMessageBox error;
+        error.setText("FEHLER! Es wurde kein USB Gerät gefunden. Bitte prüfe die Verbindungen und versuche es erneut.");
+        error.exec();
+        return 1;
+    }
+    return 0;
 }
