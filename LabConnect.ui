@@ -252,6 +252,9 @@
     </item>
    </widget>
    <widget class="QPushButton" name="commit_button">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>558</x>
@@ -437,12 +440,12 @@
      <x>0</x>
      <y>0</y>
      <width>669</width>
-     <height>19</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLabConnect">
     <property name="title">
-     <string>LabConnect</string>
+     <string>&amp;LabConnect</string>
     </property>
     <addaction name="actionGer_te_neu_laden"/>
     <addaction name="separator"/>
@@ -451,7 +454,7 @@
    </widget>
    <widget class="QMenu" name="menu_ber">
     <property name="title">
-     <string>Hilfe</string>
+     <string>H&amp;ilfe</string>
     </property>
     <addaction name="actionCredits"/>
     <addaction name="actionVersion"/>
@@ -474,32 +477,32 @@
   </widget>
   <action name="actionGer_te_neu_laden">
    <property name="text">
-    <string>Geräte neu laden</string>
+    <string>&amp;Geräte neu laden</string>
    </property>
   </action>
   <action name="actionAlle_Verbindungen_trennen">
    <property name="text">
-    <string>Alle Verbindungen trennen</string>
+    <string>&amp;Alle Verbindungen trennen</string>
    </property>
   </action>
   <action name="actionBeenden">
    <property name="text">
-    <string>Beenden</string>
+    <string>&amp;Beenden</string>
    </property>
   </action>
   <action name="actionVersion">
    <property name="text">
-    <string>Version</string>
+    <string>&amp;Version</string>
    </property>
   </action>
   <action name="actionCredits">
    <property name="text">
-    <string>Credits</string>
+    <string>&amp;Credits</string>
    </property>
   </action>
   <action name="actionHilfe">
    <property name="text">
-    <string>Hilfe</string>
+    <string>&amp;Hilfe</string>
    </property>
   </action>
   <action name="actionEinstellungen_2">
