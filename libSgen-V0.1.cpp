@@ -3,8 +3,7 @@
 #include <QTimer>
 
 extern "C" {              /*include C Header*/
-#include "usb/hiddata.h"
-#include "usb/usbconfig.h"
+#include "libusb.h"
 }
 
 usbDevice_t *dev = NULL;
@@ -170,12 +169,17 @@ void Sgen::commit_data()
 
 int Sgen::openUSB()
 {
-    if((dev=openDevice())==NULL)
-    {
-        QMessageBox error;
-        error.setText("FEHLER! Es wurde kein USB Gerät gefunden. Bitte prüfe die Verbindungen und versuche es erneut.");
-        error.exec();
-        return 1;
+    ssize_t cnt = 0;
+    libusb_context *ctx = NULL;
+    libusb_device **devs;
+    libusb_init(&ctx);
+    cnt = libusb_get_device_list(ctx,&devs);
+    for(int i=0;i<10;i++){
+        QMessageBox Device;
+        Device.setText(devs[i]);
+        Device.exec();
     }
-    return 0;
+    QMessageBox DevicesFound;
+    DevicesFound.setText("Number of Devices found:" + QString::number(cnt,10));
+    DevicesFound.exec();
 }
