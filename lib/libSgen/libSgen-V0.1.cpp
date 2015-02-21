@@ -83,9 +83,9 @@ void SetWaveform(int form)
 
 void SetFrequency(int frequenz)
 {
-    float mclk = 25000000, register = 268435456;
+    float mclk = 25000000, register_size = 268435456;
 
-    float teiler = mclk / register;
+    float teiler = mclk / register_size;
     int f_regwert = frequenz / teiler;
 
     //block1=lsb --> block4=msb

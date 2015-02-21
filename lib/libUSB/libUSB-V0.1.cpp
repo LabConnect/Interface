@@ -1,17 +1,17 @@
 #include "libUSB-V0.1.h"
 #include "libusb.h"
+#include <QMessageBox>
 
 namespace USB {
 
-usb_device_t *dev = NULL;
-
 int Open()
 {
+  int rc = 0;
   ssize_t cnt = 0;
   libusb_context *ctx = NULL;
   libusb_device **devs = NULL;
 
-  libusb_init(&ctx);
+  rc = libusb_init(&ctx);
   cnt = libusb_get_device_list(ctx, &devs);
   
   for (size_t idx = 0; idx < cnt; ++idx)
@@ -20,7 +20,6 @@ int Open()
     libusb_device_descriptor desc = {0};
     
     rc = libusb_get_device_descriptor(device, &desc);
-    assert(rc == 0);
     
     QMessageBox Gefunden;
     Gefunden.setText("Vendor:Device =" + QString::number(desc.idVendor,16) + ":" + QString::number(desc.idProduct,16));

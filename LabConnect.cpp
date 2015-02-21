@@ -61,7 +61,7 @@ void LabConnect::on_dial_valueChanged(int value)
      }
     curValue = newValue;
     ui->lcdNumber->display(Frequenz1);
-    Sgen::set_frequency(Frequenz1);
+    Sgen::SetFrequency(Frequenz1);
 }
 
 void LabConnect::on_comboBox_activated(int index)
@@ -81,30 +81,30 @@ void LabConnect::on_pushButton_clicked()
     int Fges = Fpre.toDouble() * Ffaktor;
 
     ui->lcdNumber->display(Fges);
-    Sgen::set_frequency(Fges);
+    Sgen::SetFrequency(Fges);
 }
 
 void LabConnect::on_commit_button_clicked()
 {
-    Sgen::set_waveform(ui->form_out->currentIndex());
-    Sgen::commit_data();
+    Sgen::SetWaveform(ui->form_out->currentIndex());
+    Sgen::CommitData();
 
 }
 
 void LabConnect::on_u_out_valueChanged(double arg1)
 {
-    Sgen::regwert_u_out(arg1);
+    Sgen::RegwertUout(arg1);
 }
 
 void LabConnect::on_u_offset_valueChanged(double arg1)
 {
-    Sgen::regwert_offset(arg1);
+    Sgen::RegwertOffset(arg1);
 }
 
 void LabConnect::on_actionGer_te_neu_laden_triggered()
 {
     int DeviceFound;
-    DeviceFound = Sgen::openUSB();
+    DeviceFound = USB::Open();
     if (DeviceFound == 0)
     {
         ui->commit_button->setEnabled(true);
