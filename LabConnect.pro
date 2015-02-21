@@ -27,3 +27,6 @@ FORMS    += LabConnect.ui
 LIBS += -L/usr/lib -lusb
 
 OTHER_FILES +=
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += libusb-1.0
