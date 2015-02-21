@@ -21,12 +21,9 @@ int Open()
     
     rc = libusb_get_device_descriptor(device, &desc);
     
-    if (desc.idVendor == 0x123 && desc.idProduct == 0x123)
-    {
-
-    }
-    
-
+    QMessageBox Gefunden;
+    Gefunden.setText("Vendor:Device =" + QString::number(desc.idVendor,16) + ":" + QString::number(desc.idProduct,16));
+    Gefunden.exec();
   }
   
   QMessageBox DevicesFound;
@@ -35,16 +32,10 @@ int Open()
 
   return 0;
 }
-/*
-int Write(int data[], int dev_handle){
-  libusb_control_transfer(dev_handle, 0x20, 0x09, 0x0300, 0, data, sizeof(data),0)
-  return 0;
+
+int Write(int data[], int size){
+  
 }
 
-int Read(int data[], int dev_handle){
-  libusb_control_transfer(dev_handle, 0x20, 0x09, 0x0300, 0, data, sizeof(data),0)
-  return 0;
-}
-//*/
 //end namespace
 }

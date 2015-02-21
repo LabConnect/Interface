@@ -110,3 +110,8 @@ void LabConnect::on_actionGer_te_neu_laden_triggered()
         ui->commit_button->setEnabled(true);
     }
 }
+
+void LabConnect::on_pushButton_2_clicked()
+{
+    close();
+}
