@@ -1,7 +1,7 @@
 #include "LabConnect.h"
 #include "ui_LabConnect.h"
 #include <QMessageBox>
-#include "libSgen-V0.1.h"
+#include "lib/libLabConnect.h"
 
 QString VersionNumber = "V0.3";
 int curValue = 1750;

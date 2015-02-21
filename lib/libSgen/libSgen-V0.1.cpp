@@ -1,10 +1,6 @@
 #include <QMessageBox>
 #include "libSgen-V0.1.h"
 
-#include "libusb.h"
-
-usb_device_t *dev = NULL;
-
 unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01};
 /* 0 CReg1
  * 1 Creg2
@@ -143,22 +139,4 @@ void Sgen::CommitData()
     }
     //*/
     return;
-}
-
-int Sgen::OpenUSB()
-{
-    ssize_t cnt = 0;
-    libusb_context *ctx = NULL;
-    libusb_device **devs;
-    libusb_init(&ctx);
-    cnt = libusb_get_device_list(ctx, &devs);
-    
-    for(int i=0; i<10; i++){
-        QMessageBox Device;
-        Device.setText(devs[i]);
-        Device.exec();
-    }
-    QMessageBox DevicesFound;
-    DevicesFound.setText("Number of Devices found:" + QString::number(cnt,10));
-    DevicesFound.exec();
 }
