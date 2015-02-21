@@ -19,7 +19,9 @@ unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0
 
 bool rechteck = false;
 
-void Sgen::RegwertUout(int u_amplitude)
+namespace Sgen {
+
+void RegwertUout(int u_amplitude)
 {
     float umax = 12, bits = 510;
     int register1, register2;
@@ -43,7 +45,7 @@ void Sgen::RegwertUout(int u_amplitude)
     return;
 }
 
-void Sgen::RegwertOffset(int u_offset)
+void RegwertOffset(int u_offset)
 {
     float uges = 12, bits = 510;
     int register1, register2;
@@ -66,7 +68,7 @@ void Sgen::RegwertOffset(int u_offset)
     return;
 }
 
-void Sgen::SetWaveform(int form)
+void SetWaveform(int form)
 {
     if (form == 2)
     {
@@ -79,7 +81,7 @@ void Sgen::SetWaveform(int form)
     return;
 }
 
-void Sgen::SetFrequency(int frequenz)
+void SetFrequency(int frequenz)
 {
     float mclk = 25000000, register = 268435456;
 
@@ -128,7 +130,7 @@ void Sgen::SetFrequency(int frequenz)
 
 }
 
-void Sgen::CommitData()
+void CommitData()
 {
     /*
     for (int i=0;i<11;i++)
@@ -139,4 +141,7 @@ void Sgen::CommitData()
     }
     //*/
     return;
+}
+
+//end of namespace
 }

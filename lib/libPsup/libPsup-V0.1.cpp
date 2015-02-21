@@ -1,19 +1,14 @@
 #include <QMessageBox>
 #include "libPsup-V0.1.h"
 #include "libusb.h"
-
-void SetVoltage(){
+namespace Psup {
+void SetVoltage(float voltage) {
 	
 }
 
-void SetCurrent(){
+void SetCurrent(float current) {}
 
-}
+void ReadVoltageBuffer(int &voltage, int &timestamp) {}
 
-void ReadVoltageBuffer(){
-
-}
-
-void ReadCurrentBuffer(){
-	
+void ReadCurrentBuffer(int &current, int &timestamp) {}
 }
