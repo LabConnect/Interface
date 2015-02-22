@@ -16,12 +16,13 @@ SOURCES += main.cpp\
         LabConnect.cpp \
     lib/libPsup/libPsup-V0.1.cpp \
     lib/libSgen/libSgen-V0.1.cpp \
-    lib/libUSB/libUSB-V0.1.cpp \
+    lib/libUSB/libUSB-V0.1.cpp
 
 HEADERS  += LabConnect.h \
     lib/libPsup/libPsup-V0.1.h \
     lib/libSgen/libSgen-V0.1.h \
     lib/libUSB/libUSB-V0.1.h \
+    lib/libLabConnect.h
 
 FORMS    += LabConnect.ui
 

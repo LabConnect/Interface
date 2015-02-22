@@ -12,7 +12,7 @@ LabConnect::LabConnect(QWidget *parent) :
     ui(new Ui::LabConnect)
 {
     ui->setupUi(this);
-    ui->dial->setValue(curValue);
+    //ui->dial->setValue(curValue);
 }
 
 LabConnect::~LabConnect()
@@ -108,6 +108,12 @@ void LabConnect::on_actionGer_te_neu_laden_triggered()
     if (DeviceFound == 0)
     {
         ui->commit_button->setEnabled(true);
+    }
+    else if (DeviceFound == 1)
+    {
+        QMessageBox notfound;
+        notfound.setText("Es wurden keine LabConnect Geräte gefunden! Bitte stelle sicher, dass alle Geräte korrekt angeschlossen sind und überprüfe gegebenenfalls die Verbindung.");
+        notfound.exec();
     }
 }
 

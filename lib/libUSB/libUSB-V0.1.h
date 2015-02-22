@@ -1,5 +1,5 @@
 namespace USB {
 
-	int Open();
+    int Open();
 
 }
