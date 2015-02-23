@@ -121,3 +121,12 @@ void LabConnect::on_pushButton_2_clicked()
 {
     close();
 }
+void LabConnect::on_dial_voltage_valueChanged(int value)
+{
+
+}
+
+void LabConnect::on_verticalSlider_valueChanged(int value)
+{
+    ui->current_bar->setValue(value);
+}
