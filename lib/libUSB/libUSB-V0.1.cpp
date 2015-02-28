@@ -4,7 +4,7 @@
 
 namespace USB {
 
-int Open()
+libusb_device_handle *Open(int vid, int pid)
 {
     int rc = 0;
     ssize_t cnt = 0;
@@ -18,7 +18,7 @@ int Open()
 
 
 
-    dev_handle = libusb_open_device_with_vid_pid(ctx, 0x03EB, 0x204F);
+    dev_handle = libusb_open_device_with_vid_pid(ctx, vid, pid);
 
     if (dev_handle == NULL)
     {
