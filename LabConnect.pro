@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         LabConnect.cpp \
-    lib/libPsup/libPsup-V0.1.cpp \
     lib/libSgen/libSgen-V0.1.cpp \
     lib/libUSB/libUSB-V0.1.cpp
 

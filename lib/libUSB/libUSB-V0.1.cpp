@@ -22,7 +22,7 @@ libusb_device_handle *Open(int vid, int pid)
 
     if (dev_handle == NULL)
     {
-        return 1;
+        //return 1;
     }
 
     if(libusb_kernel_driver_active(dev_handle, 0) == 1)

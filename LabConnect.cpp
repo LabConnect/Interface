@@ -104,7 +104,7 @@ void LabConnect::on_u_offset_valueChanged(double arg1)
 void LabConnect::on_actionGer_te_neu_laden_triggered()
 {
     int DeviceFound;
-    DeviceFound = USB::Open();
+    //DeviceFound = USB::Open();
     if (DeviceFound == 0)
     {
         ui->commit_button->setEnabled(true);
