@@ -1,7 +1,7 @@
 #include <libusb.h>
 class Psup {
 public:
-   Psup(int vid, int pid);
+   Psup(unsigned int vid, unsigned int pid);
     ~Psup();
   /* 0 = everything is fine
    * 1 = device not found
@@ -20,10 +20,10 @@ private:
 };
 
 Psup::Psup(unsigned int vid, unsigned int pid){
-  state = libusb_init(&ctx);
+  state = libusb_init(&_ctx);
   if (state >= 0){
-    _dev_handle = libusb_open_device_with_vid_pid(ctx,vid,pid);
-    if (_dev_handle == NULL) {
+    _dev_handle = libusb_open_device_with_vid_pid(_ctx,vid,pid);
+    if (_dev_handle == NULL)
       state = 1;
     state = 0;
   }
@@ -31,11 +31,12 @@ Psup::Psup(unsigned int vid, unsigned int pid){
 }
 
 Psup::~Psup(){
-  libusb_exit(ctx);
+  libusb_close(_dev_handle);
+  libusb_exit(_ctx);
 }
 
 void Psup::SetVoltage(float voltage){
-
+  //libusb_control_transfer(_dev_handle,0b00100001,0x09,0x0300,);
 }
 
 void Psup::SetCurrent(float current){
