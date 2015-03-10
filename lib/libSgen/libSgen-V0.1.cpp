@@ -47,12 +47,16 @@ void BootData(bool save_data, bool load_data_at_boot)
     return;
 }
 
-void RegwertUout(int u_amplitude)
+void RegwertUout(int u_amplitude_mv)
 {
-    float umax = 12, bits = 510;
-    int register1, register2;
+    int umax = 12000, bits = 510, register1, register2;
 
-    int ergebnis = (u_amplitude / (umax / bits));
+    int ergebnis = u_amplitude_mv / (umax / bits);
+
+    if (510 < ergebnis)
+    {
+        ergebnis = 510;
+    }
 
     if (ergebnis%2==0)
     {
@@ -159,7 +163,7 @@ void SetFrequency(int frequenz)
 void CommitData()
 {
 
-    for (int i=0;i<11;i++)
+    for (int i=0;i<12;i++)
     {
         QMessageBox Ausgabe;
         Ausgabe.setText("<Array, Stelle " + QString::number(i) + " > " + QString::number(output_data[i],10));

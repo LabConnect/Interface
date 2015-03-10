@@ -93,7 +93,7 @@ void LabConnect::on_commit_button_clicked()
 
 void LabConnect::on_u_out_valueChanged(double arg1)
 {
-    Sgen::RegwertUout(arg1);
+    Sgen::RegwertUout(arg1 * 1000);
 }
 
 void LabConnect::on_u_offset_valueChanged(double arg1)

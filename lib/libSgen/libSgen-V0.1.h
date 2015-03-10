@@ -1,6 +1,6 @@
 namespace Sgen {
 
-void RegwertUout(int);
+void RegwertUout(int u_amplitude_mv);
 
 void RegwertOffset(int);
 
