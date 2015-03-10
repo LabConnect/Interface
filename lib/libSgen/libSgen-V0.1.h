@@ -12,4 +12,8 @@ void CommitData();
 
 void PresetData(unsigned char);
 
+void BootData(bool , bool);
+
+bool GetBootLoad();
+
 }

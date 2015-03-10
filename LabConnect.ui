@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -211,7 +211,7 @@
      </widget>
      <widget class="QPushButton" name="commit_button">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -223,6 +223,9 @@
       </property>
       <property name="text">
        <string>Ausgabe</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label">

@@ -1,7 +1,7 @@
 #include <QMessageBox>
 #include "libSgen-V0.1.h"
 
-unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01};
+unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0x80, 0x7f, 0x01, 0x11};
 /* 0 CReg1
  * 1 Creg2
  * 2 Freg1
@@ -13,6 +13,7 @@ unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0
  * 8 uOff1
  * 9 uOff2
  * 10 Kondensatoren
+ * Bootdaten
  * Eine vordefinition der Werte ist unbedingt nötig!
  */
 
@@ -20,6 +21,31 @@ unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0
 bool rechteck = false;
 
 namespace Sgen {
+
+bool GetBootLoad()
+{
+    bool load_data_at_boot = false;
+    if ((output_data[11] & 0xF0) == 0x10)
+    {
+        load_data_at_boot = true;
+    }
+    return load_data_at_boot;
+}
+
+void BootData(bool save_data, bool load_data_at_boot)
+{
+    unsigned char save = 0x00, load = 0x00;
+    if(save_data == true)
+    {
+        save = 0x01;
+    }
+    if(load_data_at_boot)
+    {
+        load = 0x10;
+    }
+    output_data[11] = save | load;
+    return;
+}
 
 void RegwertUout(int u_amplitude)
 {
@@ -132,11 +158,11 @@ void SetFrequency(int frequenz)
 
 void CommitData()
 {
-    /*
+
     for (int i=0;i<11;i++)
     {
         QMessageBox Ausgabe;
-        Ausgabe.setText("<Array, Stelle " + QString::number(i) + " > " + QString::number(output_data[i],16));
+        Ausgabe.setText("<Array, Stelle " + QString::number(i) + " > " + QString::number(output_data[i],10));
         Ausgabe.exec();
     }
     //*/
