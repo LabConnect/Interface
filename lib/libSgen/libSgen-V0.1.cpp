@@ -13,7 +13,7 @@ unsigned char output_data[] = {0x20, 0x00, 0x66, 0x49, 0x01, 0x40, 0xd4, 0xd5, 0
  * 8 uOff1
  * 9 uOff2
  * 10 Kondensatoren
- * Bootdaten
+ * 11 Bootdaten
  * Eine vordefinition der Werte ist unbedingt nötig!
  */
 
